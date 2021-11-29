@@ -74,7 +74,7 @@ def Submenu_Relatorios():
 
 def Main():
     opcao = 0
-    while opcao <= 4 and opcao >= 0:   
+    while opcao != 0:   
         opcao = Menu()
         if opcao == 1:
             Submenu_Salas()
