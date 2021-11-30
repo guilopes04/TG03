@@ -69,11 +69,41 @@ def Submenu_Relatorios():
     print("1: Filtrar por capacidade da sala")
     print("2: Filtrar por gênero de filme")
     print("3: Filtrar por data de filmes")
-    opcao = int(input("Escolha uma opçao: "))
-    return opcao
+    opcao_relatorio = int(input("Escolha uma opçao: "))
+
+    if opcao_relatorio == 1:
+        Filtro_Cap_Sala(Salas)
+    elif opcao_relatorio == 2:
+        Filtro_gen_Filme()
+    elif opcao_relatorio == 3:
+        Filtro_data_Filme()
+
+def Filtro_Cap_Sala(Lista):
+    anuncio = print("Filtrar Salas entre a capacidade de X até Y pessoas, escreva: 'X Y'")
+    limite1 = int(input("X: "))
+    limite2 = int(input("Y: "))
+    Buscar_Cap_Sala(Lista,limite1,limite2)
+
+def Imprimir_Sala(Sala):
+    print(f"Codigo: {Sala.Codigo} | Nome: {Sala.Nome} | Capacidade: {Sala.capacidade} pessoas | Genêro: {Sala.Tipo_Exibicao} | Acessibilidade: {Sala.Acessibilidade}")
+
+def Buscar_Cap_Sala(lista,limite1,limite2):
+    Existe = False
+    for sala in lista:
+        if sala.capacidade >= limite1 and sala.capacidade <= limite2:
+            Imprimir_Sala(sala)
+            Existe = True
+    if not Existe:
+        print("Nenhuma sala encontrada nesses parâmetros")
+        
+def Filtro_gen_Filme():
+    pass
+
+def Filtro_data_Filme():
+    pass
 
 def Main():
-    opcao = 0
+    opcao = 7
     while opcao != 0:   
         opcao = Menu()
         if opcao == 1:
@@ -86,5 +116,6 @@ def Main():
             Submenu_Relatorios()
         elif opcao == 0:
             print("Obrigado por usar o programa")
+
 
 Main()
