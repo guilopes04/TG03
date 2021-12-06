@@ -1,24 +1,26 @@
 import os
+from relatorios import *
+from datetime import date
 class Sala:
-    Codigo = int
+    Codigo = ""
     Nome = ""
     Capacidade = int
     Tipo_Exibicao = ""
     Acessibilidade = bool
 
 class Filme:
-    Codigo = int
+    Codigo = ""
     Nome = ""
     Ano_Lancamento = int
     Genero = ""
-    Atores = []
+    Atores = ""
 
 class Sessao:
-    Codigo_Filme = int
-    Codigo_Sala = int
-    Data = ""
+    Codigo_Filme = ""
+    Codigo_Sala = ""
+    Data = str
     Horario = ""
-    Preco_Ingresso = ""
+    Preco_Ingresso = float
 
 def Menu():
     print("Menu de Opções:")
@@ -68,39 +70,15 @@ def Submenu_Relatorios():
     print("Menu de Relatórios:")
     print("1: Filtrar por capacidade da sala")
     print("2: Filtrar por gênero de filme")
-    print("3: Filtrar por data de filmes")
+    print("3: Filtrar por data de Sessões")
     opcao_relatorio = int(input("Escolha uma opçao: "))
 
     if opcao_relatorio == 1:
         Filtro_Cap_Sala(Salas)
     elif opcao_relatorio == 2:
-        Filtro_gen_Filme()
+        Filtro_gen_Filme(Filmes)
     elif opcao_relatorio == 3:
-        Filtro_data_Filme()
-
-def Filtro_Cap_Sala(Lista):
-    anuncio = print("Filtrar Salas entre a capacidade de X até Y pessoas, escreva: 'X Y'")
-    limite1 = int(input("X: "))
-    limite2 = int(input("Y: "))
-    Buscar_Cap_Sala(Lista,limite1,limite2)
-
-def Imprimir_Sala(Sala):
-    print(f"Codigo: {Sala.Codigo} | Nome: {Sala.Nome} | Capacidade: {Sala.capacidade} pessoas | Genêro: {Sala.Tipo_Exibicao} | Acessibilidade: {Sala.Acessibilidade}")
-
-def Buscar_Cap_Sala(lista,limite1,limite2):
-    Existe = False
-    for sala in lista:
-        if sala.capacidade >= limite1 and sala.capacidade <= limite2:
-            Imprimir_Sala(sala)
-            Existe = True
-    if not Existe:
-        print("Nenhuma sala encontrada nesses parâmetros")
-        
-def Filtro_gen_Filme():
-    pass
-
-def Filtro_data_Filme():
-    pass
+        Filtro_data_Filme(Filmes,Salas,Sessoes)
 
 def Main():
     opcao = 7
@@ -117,5 +95,39 @@ def Main():
         elif opcao == 0:
             print("Obrigado por usar o programa")
 
+#testes
+Salas = []
+sala = Sala()
+sala.Codigo = 3
+sala.Nome = 'sexo'
+sala.capacidade = 400
+sala.Tipo_Exibicao = 'romance'
+sala.Acessibilidade = True
+Salas.append(sala)
+
+sala = Sala()
+sala.Codigo = 2
+sala.Nome = 'bilada'
+sala.capacidade = 300
+sala.Tipo_Exibicao = 'terror'
+sala.Acessibilidade = False
+Salas.append(sala)
+
+Filmes = []
+filme = Filme()
+filme.Codigo = 777
+filme.Nome = 'bilada molenga'
+filme.Ano_Lancamento = 2013
+filme.Genero = 'terror'
+filme.Atores = "Jose, kiko, thigas"
+Filmes.append(filme)
+
+Sessoes = []
+sessao = Sessao()
+sessao.Data = "20/6/2019"
+sessao.Horario = "4:20"
+sessao.Preco_Ingresso = 16,50
+Sessoes.append(sessao)
+print(sessao.Data)
 
 Main()
