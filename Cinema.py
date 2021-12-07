@@ -1,24 +1,7 @@
 import os
-class Sala:
-    Codigo = int
-    Nome = ""
-    Capacidade = int
-    Tipo_Exibicao = ""
-    Acessibilidade = bool
-
-class Filme:
-    Codigo = int
-    Nome = ""
-    Ano_Lancamento = int
-    Genero = ""
-    Atores = []
-
-class Sessao:
-    Codigo_Filme = int
-    Codigo_Sala = int
-    Data = ""
-    Horario = ""
-    Preco_Ingresso = ""
+from Gerencia_Salas import *
+from Gerencia_Filmes import *
+from Gerencia_Sessoes import *
 
 def Menu():
     print("Menu de Opções:")
@@ -68,11 +51,11 @@ def Submenu_Relatorios():
     print("Menu de Relatórios:")
     print("1: Filtrar por capacidade da sala")
     print("2: Filtrar por gênero de filme")
-    print("3: Filtrar por data de filmes")
+    print("3: Filtrar por data de Filmes")
     opcao_relatorio = int(input("Escolha uma opçao: "))
 
     if opcao_relatorio == 1:
-        Filtro_Cap_Sala(Salas)
+        Filtro_Cap_Sala()
     elif opcao_relatorio == 2:
         Filtro_gen_Filme()
     elif opcao_relatorio == 3:
@@ -103,19 +86,69 @@ def Filtro_data_Filme():
     pass
 
 def Main():
+    Arquivo_Sala = "Dados_Salas.txt"
+    Salas = Le_Arquivo_Sala(Arquivo_Sala)   #colocar maiusculas
+
+    Arquivo_Filme = "Dados_Filmes.txt"
+    Filmes = Le_Arquivo_Filme(Arquivo_Filme)
+
+    Arquivo_Sessao = "Dados_Sessao.txt"
+    Sessoes = Le_Arquivo_Sessao(Arquivo_Sessao)
+
     opcao = 7
     while opcao != 0:   
         opcao = Menu()
         if opcao == 1:
-            Submenu_Salas()
+            opcao = Submenu_Salas()
+            if opcao == 1:
+                inserir_sala(Salas)
+            elif opcao == 2:
+                listar_salas(Salas)
+            elif opcao == 3:
+                print("3: Pesquisar Salas")
+            elif opcao == 4:
+                Alterar_Sala(Salas)
+            elif opcao == 5:
+                Remover_Sala(Salas)
+            else:
+                print(f"Opção {opcao} inválida. Escolha uma nova opção!")
         elif opcao == 2:
-            Submenu_Filmes()
+            opcao = Submenu_Filmes()
+            if opcao == 1:
+                inserir_filme(Filmes)
+            elif opcao == 2:
+                listar_filmes(Filmes)
+            elif opcao == 3:
+                print("3: Pesquisar Filmes")
+            elif opcao == 4:
+                Alterar_Filme(Filmes)
+            elif opcao == 5:
+                Remover_Filme(Filmes)
+            else:
+                print(f"Opção {opcao} inválida. Escolha uma nova opção!")
         elif opcao == 3:
-            Submenu_Sessao()
+            opcao = Submenu_Sessao()
+            if opcao == 1:
+                inserir_sessao(Sessoes)
+            elif opcao == 2:
+                listar_sessoes(Sessoes)
+            elif opcao == 3:
+                print("3: Pesquisar Sessão")
+            elif opcao == 4:
+                Alterar_Sessao(Sessoes)
+            elif opcao == 5:
+                Remover_Sessao(Sessoes)
+            else:
+                print(f"Opção {opcao} inválida. Escolha uma nova opção!")
         elif opcao == 4:
             Submenu_Relatorios()
         elif opcao == 0:
-            print("Obrigado por usar o programa")
+            Escreve_Arquivo_Sala(Salas, Arquivo_Sala)
+            Escreve_Arquivo_Filme(Filmes, Arquivo_Filme)
+            Escreve_Arquivo_Sessao(Sessoes, Arquivo_Sessao)
+            print("Obrigado por usar o programa!")
+        else:
+            print(f"Opção {opcao} inválida. Escolha uma nova opção!")
 
 
 Main()
