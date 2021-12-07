@@ -1,6 +1,9 @@
 import os
 from relatorios import *
-from datetime import date
+from Comum import *
+from Gerencia_Salas import *
+from Gerencia_Filmes import *
+from Gerencia_Sessoes import *
 
 def Menu():
     print("Menu de Opções:")
@@ -8,11 +11,12 @@ def Menu():
     print("2: Submenu de Filmes")
     print("3: Submenu de Sessões")
     print("4: Submenu Relatórios")
+    print("5: Salvar")
     print("0: Sair")
     opcao = int(input("Escolha uma opçao: "))
     return opcao
 
-def Submenu_Salas():
+def Submenu_Salas(Salas):
     os.system("cls")
     os.system("clear")
     print("Menu de Salas:")
@@ -22,21 +26,46 @@ def Submenu_Salas():
     print("4: Alterar Salas")
     print("5: Remover Sala")
     opcao = int(input("Escolha uma opçao: "))
-    return opcao
+    
+    if opcao == 1:
+        Inserir_Sala(Salas)  
+    elif opcao == 2:
+        Listar_Sala(Salas)  
+    elif opcao == 3:
+        Pesquisar_Sala(Salas)
+    elif opcao == 4:
+        Alterar_Sala(Salas) 
+    elif opcao == 5:
+        Remover_Sala(Salas)
+    else:
+        print(f"Opção {opcao} inválida. Escolha uma nova opção!")
 
-def Submenu_Filmes():
+
+def Submenu_Filmes(Filmes):
     os.system("cls")
     os.system("clear")
     print("Menu de Filmes:")
     print("1: Inserir Filme")
-    print("2: Listar Todas os Filmes")
+    print("2: Listar Todos os Filmes")
     print("3: Pesquisar Filmes")
     print("4: Alterar Filme")
     print("5: Remover Filme")
     opcao = int(input("Escolha uma opçao: "))
-    return opcao
+    
+    if opcao == 1:
+        Inserir_Filme(Filmes)
+    elif opcao == 2:
+        Listar_Filme(Filmes)
+    elif opcao == 3:
+        Pesquisar_Filme(Filmes)
+    elif opcao == 4:
+        Alterar_Filme(Filmes)
+    elif opcao == 5:
+        Remover_Filme(Filmes)
+    else:
+        print(f"Opção {opcao} inválida. Escolha uma nova opção!")
 
-def Submenu_Sessao():
+def Submenu_Sessao(Sessoes):
     os.system("cls")
     os.system("clear")
     print("Menu de Sessões:")
@@ -46,9 +75,21 @@ def Submenu_Sessao():
     print("4: Alterar Sessão")
     print("5: Remover Sessão")
     opcao = int(input("Escolha uma opçao: "))
-    return opcao
+    
+    if opcao == 1:
+        Inserir_Sessao(Sessoes)
+    elif opcao == 2:
+        Listar_Sessao(Sessoes)
+    elif opcao == 3:
+        Pesquisar_Sessao(Sessoes)
+    elif opcao == 4:
+        Alterar_Sessao(Sessoes)
+    elif opcao == 5:
+        Remover_Sessao(Sessoes)
+    else:
+        print(f"Opção {opcao} inválida. Escolha uma nova opção!")
 
-def Submenu_Relatorios():
+def Submenu_Relatorios(Filmes,Salas,Sessoes):
     os.system("cls") #windows
     os.system("clear") #linux
     print("Menu de Relatórios:")
@@ -65,56 +106,38 @@ def Submenu_Relatorios():
         Filtro_data_Filme(Filmes,Salas,Sessoes)
 
 def Main():
+    Arquivo_Sala = "Dados_Salas.txt"
+    Salas = Le_Arquivo_Sala(Arquivo_Sala)
+
+    Arquivo_Filme = "Dados_Filmes.txt"
+    Filmes = Le_Arquivo_Filme(Arquivo_Filme)
+
+    Arquivo_Sessao = "Dados_Sessao.txt"
+    Sessoes = Le_Arquivo_Sessao(Arquivo_Sessao)
+
     opcao = 7
     while opcao != 0:   
         opcao = Menu()
         if opcao == 1:
-            Submenu_Salas()
+            Submenu_Salas(Salas)
         elif opcao == 2:
-            Submenu_Filmes()
+            Submenu_Filmes(Filmes)
         elif opcao == 3:
-            Submenu_Sessao()
+            Submenu_Sessao(Sessoes)
         elif opcao == 4:
-            Submenu_Relatorios()
+            Submenu_Relatorios(Filmes,Salas,Sessoes)
+        elif opcao == 5:
+            Escreve_Arquivo_Sala(Salas, Arquivo_Sala)
+            Escreve_Arquivo_Filme(Filmes, Arquivo_Filme)
+            Escreve_Arquivo_Sessao(Sessoes, Arquivo_Sessao)
+            print("Salvo!")
         elif opcao == 0:
-            print("Obrigado por usar o programa")
+            Escreve_Arquivo_Sala(Salas, Arquivo_Sala)
+            Escreve_Arquivo_Filme(Filmes, Arquivo_Filme)
+            Escreve_Arquivo_Sessao(Sessoes, Arquivo_Sessao)
+            print("Obrigado por usar o programa!")
         else:
-            print("Valor Incorreto, digite novamente!")
+            print(f"Opção {opcao} inválida. Escolha uma nova opção!")
 
-#testes
-Salas = []
-sala = Sala()
-sala.Codigo = 3
-sala.Nome = 'sexo'
-sala.capacidade = 400
-sala.Tipo_Exibicao = 'romance'
-sala.Acessibilidade = True
-Salas.append(sala)
-
-sala = Sala()
-sala.Codigo = 2
-sala.Nome = 'bilada'
-sala.capacidade = 300
-sala.Tipo_Exibicao = 'terror'
-sala.Acessibilidade = False
-Salas.append(sala)
-
-Filmes = []
-filme = Filme()
-filme.Codigo = 777
-filme.Nome = 'bilada molenga'
-filme.Ano_Lancamento = 2013
-filme.Genero = 'terror'
-filme.Atores = "Jose, kiko, thigas"
-Filmes.append(filme)
-
-Sessoes = []
-sessao = Sessao()
-sessao.Codigo_Filme = 777
-sessao.Codigo_Sala = 2
-sessao.Data = "20/6/2019"
-sessao.Horario = "4:20"
-sessao.Preco_Ingresso = 16.50
-Sessoes.append(sessao)
 
 Main()

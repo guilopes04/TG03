@@ -1,24 +1,26 @@
-import datetime
+from Gerencia_Sessoes import *
+from Gerencia_Salas import *
+from Gerencia_Filmes import *
 
 class Sala:
-    Codigo = ""
-    Nome = ""
+    Codigo = str
+    Nome = str
     Capacidade = int
-    Tipo_Exibicao = ""
+    Tipo_Exibicao = str
     Acessibilidade = bool
 
 class Filme:
-    Codigo = ""
-    Nome = ""
+    Codigo = str
+    Nome = str
     Ano_Lancamento = int
-    Genero = ""
-    Atores = ""
+    Genero = str
+    Atores = str
 
 class Sessao:
-    Codigo_Filme = ""
-    Codigo_Sala = ""
+    Codigo_Filme = str
+    Codigo_Sala = str
     Data = str
-    Horario = ""
+    Horario = str
     Preco_Ingresso = float
 
 def Filtro_Cap_Sala(Lista):
@@ -27,8 +29,6 @@ def Filtro_Cap_Sala(Lista):
     limite2 = int(input("Y: "))
     Buscar_Cap_Sala(Lista,limite1,limite2)
 
-def Imprimir_Sala(Sala):
-    print(f"Codigo: {Sala.Codigo} | Nome: {Sala.Nome} | Capacidade: {Sala.capacidade} pessoas | Tipo de exibição: {Sala.Tipo_Exibicao} | Acessibilidade: {Sala.Acessibilidade}")
 
 def Buscar_Cap_Sala(lista,limite1,limite2):
     Existe = False
@@ -38,9 +38,6 @@ def Buscar_Cap_Sala(lista,limite1,limite2):
             Existe = True
     if not Existe:
         print("Nenhuma sala encontrada com essa capacidade")
-
-def Imprimir_Filme(Filme):
-    print(f"Codigo: {Filme.Codigo} | Nome: {Filme.Nome} | Ano de lançamento: {Filme.Ano_Lancamento} | Genêro: {Filme.Genero} | Atores: {Filme.Atores}")
 
 def Filtro_gen_Filme(lista):
     genêro = input("Qual genêro cinematográfico voce deseja filtrar? ")
