@@ -101,9 +101,9 @@ def Main():
         if opcao == 1:
             opcao = Submenu_Salas()
             if opcao == 1:
-                inserir_sala(Salas)
+                print("1: Inserir Salas")
             elif opcao == 2:
-                listar_salas(Salas)
+                print("2: Listar Salas")
             elif opcao == 3:
                 print("3: Pesquisar Salas")
             elif opcao == 4:
