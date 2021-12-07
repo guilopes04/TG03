@@ -2,6 +2,12 @@ from Comum import *
 import os
 from relatorios import *
 
+class Sala:
+    Codigo = str
+    Nome = str
+    Capacidade = int
+    Tipo_Exibicao = str
+    Acessibilidade = bool
 
 def Alterar_Sala(Salas):
     os.system("cls")
@@ -32,7 +38,7 @@ def Remover_Sala(Salas):
 def Escreve_Arquivo_Sala(Salas, Nome_Arquivo):
     arq = open(Nome_Arquivo, 'w')
     for s in Salas:
-        arq.write(s.Codigo + ';' + s.Nome + ';' + str(s.Capacidade) + ';' + s.Tipo_Exibicao + ';' + s.Acessibilidade + '\n')
+        arq.write(s.Codigo + ';' + s.Nome + ';' + str(s.Capacidade) + ';' + s.Tipo_Exibicao + ';' + str(s.Acessibilidade) + '\n')
     arq.close()
 
 def Le_Arquivo_Sala(Nome_Arquivo):
@@ -75,7 +81,6 @@ def Listar_Sala(Sala):
     if len(Sala) == 0:
         print("Não há salas cadastradas.")
     else:
-        print("Código, Nome, Capacidade, Gênero e Acessibilidade")
         for sala in Sala:
             Imprimir_Sala(sala)
 

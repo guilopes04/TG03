@@ -2,26 +2,6 @@ from Gerencia_Sessoes import *
 from Gerencia_Salas import *
 from Gerencia_Filmes import *
 
-class Sala:
-    Codigo = str
-    Nome = str
-    Capacidade = int
-    Tipo_Exibicao = str
-    Acessibilidade = bool
-
-class Filme:
-    Codigo = str
-    Nome = str
-    Ano_Lancamento = int
-    Genero = str
-    Atores = str
-
-class Sessao:
-    Codigo_Filme = str
-    Codigo_Sala = str
-    Data = str
-    Horario = str
-    Preco_Ingresso = float
 
 def Filtro_Cap_Sala(Lista):
     anuncio = print("Filtrar Salas entre a capacidade de X até Y pessoas")

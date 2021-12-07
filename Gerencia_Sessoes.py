@@ -3,6 +3,12 @@ from datetime import *
 import os
 from relatorios import *
 
+class Sessao:
+    Codigo_Filme = str
+    Codigo_Sala = str
+    Data = str
+    Horario = str
+    Preco_Ingresso = float
 
 def Alterar_Sessao(Sessoes):
     os.system("cls")
@@ -90,19 +96,19 @@ def Imprimir_Sessao(Sessao):
 
 def Inserir_Sessao(Sessao):
     Codigo_Filme = input("Informe o código do filme: ")
-    Codigo_Sala = int(input("Informe o código da sala: "))
+    Codigo_Sala = input("Informe o código da sala: ")
     if Buscar(Sessao, Codigo_Filme) == -1:
         Data = input("Informe a data da sessão: ")
         Horario = input("Informe o horário da sessão: ")
         Preco_Ingresso = input("Informe o preço do ingresso: ")
-        sessao = Sessao()
-        sessao.Codigo_Filme = Codigo_Filme
-        sessao.Codigo_Sala = Codigo_Sala
-        sessao.Data = Data
-        sessao.Horario = Horario
-        sessao.Preco_Ingresso = Preco_Ingresso
+        s = Sessao()
+        s.Codigo_Filme = Codigo_Filme
+        s.Codigo_Sala = Codigo_Sala
+        s.Data = Data
+        s.Horario = Horario
+        s.Preco_Ingresso = Preco_Ingresso
         Sessao.append(sessao)
-        print(f"Sessão da sala {sessao.Codigo_Sala} inserida com sucesso.")
+        print(f"Sessão da sala {s.Codigo_Sala} inserida com sucesso.")
     else:
         print(f"Sessão da sala {Codigo_Sala} já cadastrada.")
 

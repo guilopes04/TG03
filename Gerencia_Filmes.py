@@ -2,6 +2,12 @@ from Comum import *
 import os
 from relatorios import *
 
+class Filme:
+    Codigo = str
+    Nome = str
+    Ano_Lancamento = int
+    Genero = str
+    Atores = str
 
 def Alterar_Filme(Filmes):
     os.system("cls")
@@ -40,7 +46,7 @@ def Le_Arquivo_Filme(Nome_Arquivo):
     arq = open(Nome_Arquivo, 'r')
     for linha in arq:
         texto = linha.split(';')
-        f = Filmes()
+        f = Filme()
         f.Codigo = texto[0]
         f.Nome = texto[1]
         f.Ano_Lancamento = texto[2]
@@ -51,7 +57,7 @@ def Le_Arquivo_Filme(Nome_Arquivo):
     return Filmes
 
 def Imprimir_Filme(Filme):
-    print(f"Código: {Filme.Codigo} | Nome: {Filme.Nome} | Ano de Lançamento: {Filme.Ano} pessoas | Genêro: {Filme.Genero} | Atores: {Filme.Atores}")
+    print(f"Código: {Filme.Codigo} | Nome: {Filme.Nome} | Ano de Lançamento: {Filme.Ano_Lancamento} | Genêro: {Filme.Genero} | Atores: {Filme.Atores}")
 
 def Inserir_Filme(Filmes):
     Codigo = input("Informe o código do filme: ")
@@ -63,7 +69,7 @@ def Inserir_Filme(Filmes):
         filme = Filme()
         filme.Codigo = Codigo
         filme.Nome = Nome
-        filme.Ano = Ano
+        filme.Ano_Lancamento = Ano
         filme.Genero = Genero
         filme.Atores = Atores
         Filmes.append(filme)
@@ -76,7 +82,6 @@ def Listar_Filme(Filme):
     if len(Filme) == 0:
         print("Não há filmes cadastrados.")
     else:
-        print("Código, Nome, Ano, Gênero e Atores")
         for filme in Filme:
             Imprimir_Filme(filme)
 
