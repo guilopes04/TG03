@@ -1,26 +1,6 @@
 import os
 from relatorios import *
 from datetime import date
-class Sala:
-    Codigo = ""
-    Nome = ""
-    Capacidade = int
-    Tipo_Exibicao = ""
-    Acessibilidade = bool
-
-class Filme:
-    Codigo = ""
-    Nome = ""
-    Ano_Lancamento = int
-    Genero = ""
-    Atores = ""
-
-class Sessao:
-    Codigo_Filme = ""
-    Codigo_Sala = ""
-    Data = str
-    Horario = ""
-    Preco_Ingresso = float
 
 def Menu():
     print("Menu de Opções:")
@@ -34,6 +14,7 @@ def Menu():
 
 def Submenu_Salas():
     os.system("cls")
+    os.system("clear")
     print("Menu de Salas:")
     print("1: Inserir Sala")
     print("2: Listar Todas as Salas")
@@ -45,6 +26,7 @@ def Submenu_Salas():
 
 def Submenu_Filmes():
     os.system("cls")
+    os.system("clear")
     print("Menu de Filmes:")
     print("1: Inserir Filme")
     print("2: Listar Todas os Filmes")
@@ -56,6 +38,7 @@ def Submenu_Filmes():
 
 def Submenu_Sessao():
     os.system("cls")
+    os.system("clear")
     print("Menu de Sessões:")
     print("1: Inserir Sessão")
     print("2: Listar Todas as Sessões")
@@ -66,7 +49,8 @@ def Submenu_Sessao():
     return opcao
 
 def Submenu_Relatorios():
-    os.system("cls")
+    os.system("cls") #windows
+    os.system("clear") #linux
     print("Menu de Relatórios:")
     print("1: Filtrar por capacidade da sala")
     print("2: Filtrar por gênero de filme")
@@ -94,6 +78,8 @@ def Main():
             Submenu_Relatorios()
         elif opcao == 0:
             print("Obrigado por usar o programa")
+        else:
+            print("Valor Incorreto, digite novamente!")
 
 #testes
 Salas = []
@@ -124,10 +110,11 @@ Filmes.append(filme)
 
 Sessoes = []
 sessao = Sessao()
+sessao.Codigo_Filme = 777
+sessao.Codigo_Sala = 2
 sessao.Data = "20/6/2019"
 sessao.Horario = "4:20"
-sessao.Preco_Ingresso = 16,50
+sessao.Preco_Ingresso = 16.50
 Sessoes.append(sessao)
-print(sessao.Data)
 
 Main()
