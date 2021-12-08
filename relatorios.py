@@ -4,16 +4,16 @@ from Gerencia_Filmes import *
 
 
 def Filtro_Cap_Sala(Lista):
-    anuncio = print("Filtrar Salas entre a capacidade de X até Y pessoas")
+    print("Filtrar Salas entre a capacidade de X até Y pessoas")
     limite1 = int(input("X: "))
     limite2 = int(input("Y: "))
     Buscar_Cap_Sala(Lista,limite1,limite2)
 
 
-def Buscar_Cap_Sala(lista,limite1,limite2):
+def Buscar_Cap_Sala(Salas,limite1,limite2):
     Existe = False
-    for sala in lista:
-        if sala.capacidade >= limite1 and sala.capacidade <= limite2:
+    for sala in Salas:
+        if int(sala.Capacidade) >= limite1 and int(sala.Capacidade) <= limite2:
             Imprimir_Sala(sala)
             Existe = True
     if not Existe:
@@ -50,7 +50,6 @@ def Filtro_data_Filme(Filmes,Salas,Sessoes):
     MesY = int(DataY[1])
     AnoY = int(DataY[2])
 
-
     Data = []
     for sessao in Sessoes:
         Data = sessao.Data
@@ -58,7 +57,7 @@ def Filtro_data_Filme(Filmes,Salas,Sessoes):
         Dia = int(Data[0])
         Mes = int(Data[1])
         Ano = int(Data[2])
-        if int(Ano) > int(AnoX) and int(Ano) < int(AnoY):
+        if int(Ano) >= int(AnoX) and int(Ano) <= int(AnoY):
             if Mes >= MesX and Mes <= MesY:
                 if Dia >= DiaX and Dia <= DiaY:
                     Filme_da_Sessao = Filme()
@@ -74,13 +73,11 @@ def Imprimir_Filme_Data(Filme,Sala,Sessao):
 
 
 def Buscar_Filme_Cod_Sessao(sessao, Filmes):
-    Existe = False
     for filme in Filmes:
         if filme.Codigo == sessao.Codigo_Filme:
             return filme
 
 def Buscar_Sala_Cod_Sessao(sessao, Salas):
-    Existe = False
     for sala in Salas:
         if sala.Codigo == sessao.Codigo_Sala:
             return sala

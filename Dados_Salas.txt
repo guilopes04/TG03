@@ -1,3 +1,3 @@
 1;sala1;350;terror;True
-2;sala2;400;romance;True
-
+2;sala2;400;romance;False
+4;fodase;10;crack;True

@@ -94,21 +94,21 @@ def Imprimir_Sessao(Sessao):
     print(f"Código do filme: {Sessao.Codigo_Filme} | Código da sala: {Sessao.Codigo_Sala} | Data: {Sessao.Data} | Horário: {Sessao.Horario} | Preço do ingresso: {Sessao.Preco_Ingresso}")
 
 
-def Inserir_Sessao(Sessao):
+def Inserir_Sessao(Sessoes):
     Codigo_Filme = input("Informe o código do filme: ")
     Codigo_Sala = input("Informe o código da sala: ")
-    if Buscar(Sessao, Codigo_Filme) == -1:
+    if Buscar(Sessoes, Codigo_Filme) == -1:
         Data = input("Informe a data da sessão: ")
         Horario = input("Informe o horário da sessão: ")
         Preco_Ingresso = input("Informe o preço do ingresso: ")
-        s = Sessao()
-        s.Codigo_Filme = Codigo_Filme
-        s.Codigo_Sala = Codigo_Sala
-        s.Data = Data
-        s.Horario = Horario
-        s.Preco_Ingresso = Preco_Ingresso
-        Sessao.append(sessao)
-        print(f"Sessão da sala {s.Codigo_Sala} inserida com sucesso.")
+        sessao = Sessao()
+        sessao.Codigo_Filme = Codigo_Filme
+        sessao.Codigo_Sala = Codigo_Sala
+        sessao.Data = Data
+        sessao.Horario = Horario
+        sessao.Preco_Ingresso = Preco_Ingresso
+        Sessoes.append(sessao)
+        print(f"Sessão da sala {sessao.Codigo_Sala} inserida com sucesso.")
     else:
         print(f"Sessão da sala {Codigo_Sala} já cadastrada.")
 
@@ -117,7 +117,6 @@ def Listar_Sessao(Sessao):
     if len(Sessao) == 0:
         print("Não há sessões cadastradas.")
     else:
-        print("Código do filme, Código da sala, Data, Horário e Preço do ingresso")
         for sessao in Sessao:
             Imprimir_Sessao(sessao)
 
@@ -129,11 +128,3 @@ def Pesquisar_Sessao(Sessao):
     else:
         sessao = Sessao[posicao_encontrado]
         Imprimir_Sessao(sessao)
-
-
-def Escreve_Arquivo_Sessao(Sessao, nome_arquivo):
-    arq = open(nome_arquivo, 'w')
-    for sessao in Sessao:
-        arq.write(sessao.Codigo_Filme + '|' + sessao.Codigo_Sala + '|' + sessao.Data + '|' + sessao.Horario + '|' + sessao.Preco_Ingresso + '\n')
-        
-    arq.close()
