@@ -49,7 +49,7 @@ def Le_Arquivo_Filme(Nome_Arquivo):
     Filmes = []
     arq = open(Nome_Arquivo, 'r')
     for linha in arq:
-        texto = linha.split(';')
+        texto = linha.strip().split(';')
         f = Filme()
         f.Codigo = texto[0]
         f.Nome = texto[1]
