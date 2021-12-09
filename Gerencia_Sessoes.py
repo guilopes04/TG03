@@ -1,5 +1,4 @@
 from Comum import *
-from datetime import *
 import os
 from relatorios import *
 
@@ -12,31 +11,24 @@ class Sessao:
 
 def Alterar_Sessao(Sessoes):
     os.system("cls")
-    Repeticao = True
-    while Repeticao:
-        Listar_Sessoes(Sessoes)
-        posicao = int(input("Escreva qual Sessão deseja alterar: "))
-        codigo_filme = input("Informe o código do novo filme: ")
-        codigo_sala = input("Informe o código da nova sala: ")
-        ano = int(input("Informe o novo ano: "))
-        mes = int(input("Informe o novo mês: "))
-        dia = int(input("Informe o novo dia: "))
-        data = date(ano, mes, dia)
-        hora = int(input("Informe somente a hora: "))
-        minutos = int(input("Informe somente os minutos: "))
-        horario = time(hora, minutos)
-        preco_ingresso = input("Informe o novo preço do ingresso: ")
-        if  Buscar_Sessao_Repetida(Sessoes, codigo_filme, codigo_sala, data, horario) == -1:
-            print("Não foi possível aterar a sessão! Nova sessão informada já estava contida.")
-        else:
-            Repeticao = False
+    os.system("clear")
+    Listar_Sessoes(Sessoes)
+    posicao = int(input("Escreva qual Sessão deseja alterar: "))
+    codigo_filme = input("Informe o código do novo filme: ")
+    codigo_sala = input("Informe o código da nova sala: ")
+    data = input("Informe a nova data (0/0/0000): ")
+    horario = input("Informe o novo horário (00:00): ")
+    preco_ingresso = input("Informe o novo preço do ingresso: ")
+    if  Buscar_Sessao_Repetida(Sessoes, codigo_filme, codigo_sala, data, horario) == -1:
+        print("Não foi possível aterar a sessão! Nova sessão informada já estava cadastrada.")
     s = Sessoes[posicao]
     s.Codigo_Filme = codigo_filme
     s.Codigo_Sala = codigo_sala
-    s.Data = date(ano, mes, dia)
-    s.Horario = time(hora, minutos)
+    s.Data = data
+    s.Horario = horario
     s.Preco_Ingresso = preco_ingresso
     os.system("cls")
+    os.system("clear")
     print("Sessão alterada com sucesso!")
 
 def Buscar_Sessao_Repetida(Sessoes, codigo_filme, codigo_sala, data, horario):
@@ -60,14 +52,14 @@ def Imprimir_Sessao(s):
     print(s.Codigo_Filme, s.Codigo_Sala, s.Data, s.Horario, s.Preco_Ingresso)
 
 def Remover_Sessao(Sessoes):
-    codigo = input("Escreva o código da sessão: ")
-    Posicao_Remover = Buscar(Sessoes, codigo)
-    if Posicao_Remover == -1:
-        print(f"Sessão {codigo} não encontrada.")
-    else:
-        Remover(Sessoes, Posicao_Remover)
-        os.system("cls")
-        print(f"Sessão código {codigo} removida com sucesso!")
+    os.system("cls")
+    os.system("clear")
+    Listar_Sessoes(Sessoes)
+    Posicao_Remover = int(input("Escreva o código da sessão a excluir: "))
+    Remover(Sessoes, Posicao_Remover)
+    os.system("cls")
+    os.system("clear")
+    print(f"Sessão removida com sucesso!")
 
 def Escreve_Arquivo_Sessao(Sessoes, Nome_Arquivo):
     arq = open(Nome_Arquivo, 'w')
@@ -95,11 +87,13 @@ def Imprimir_Sessao(Sessao):
 
 
 def Inserir_Sessao(Sessoes):
+    os.system("cls")
+    os.system("clear")
     Codigo_Filme = input("Informe o código do filme: ")
     Codigo_Sala = input("Informe o código da sala: ")
     if Buscar(Sessoes, Codigo_Filme) == -1:
-        Data = input("Informe a data da sessão: ")
-        Horario = input("Informe o horário da sessão: ")
+        Data = input("Informe a data da sessão (0/0/0000): ")
+        Horario = input("Informe o horário da sessão (00:00): ")
         Preco_Ingresso = input("Informe o preço do ingresso: ")
         sessao = Sessao()
         sessao.Codigo_Filme = Codigo_Filme
@@ -108,12 +102,16 @@ def Inserir_Sessao(Sessoes):
         sessao.Horario = Horario
         sessao.Preco_Ingresso = Preco_Ingresso
         Sessoes.append(sessao)
+        os.system("cls")
+        os.system("clear")
         print(f"Sessão da sala {sessao.Codigo_Sala} inserida com sucesso.")
     else:
         print(f"Sessão da sala {Codigo_Sala} já cadastrada.")
 
 
 def Listar_Sessao(Sessao):
+    os.system("cls")
+    os.system("clear")
     if len(Sessao) == 0:
         print("Não há sessões cadastradas.")
     else:
@@ -121,6 +119,8 @@ def Listar_Sessao(Sessao):
             Imprimir_Sessao(sessao)
 
 def Pesquisar_Sessao(Sessao):
+    os.system("cls")
+    os.system("clear")
     Data = input("Informe a data da sessão: ")
     Horario = input("Informe o horário da sessão: ")
     posicao_encontrado_data = Buscar_Sessao_Data(Sessao, Data)
