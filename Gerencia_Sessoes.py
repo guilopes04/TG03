@@ -119,19 +119,12 @@ def Listar_Sessao(Sessao):
             Imprimir_Sessao(sessao)
 
 def Pesquisar_Sessao(Sessao):
-    os.system("cls")
-    os.system("clear")
     Data = input("Informe a data da sessão: ")
     Horario = input("Informe o horário da sessão: ")
-    posicao_encontrado_data = Buscar_Sessao_Data(Sessao, Data)
-    posicao_encontrado_horario = Buscar_Sessao_Horario(Sessao, Horario)
+    posicao_encontrado = Buscar_Sessao(Sessao, Data, Horario)
    
-    if posicao_encontrado_data == -1 and posicao_encontrado_horario == -1:
+    if posicao_encontrado == -1:
         print(f"Sessão do dia {Data} e horário {Horario} não encontrada.")
-    elif posicao_encontrado_data == 0 and posicao_encontrado_horario == -1:
-        print(f"Sessão do dia {Data} e horário {Horario} não encontrada.")
-    elif posicao_encontrado_data == -1 and posicao_encontrado_horario == 0:
-        print(f"Sessão do dia {Data} e horário {Horario} não encontrada.")
-    elif posicao_encontrado_data == 0 and posicao_encontrado_horario == 0:
-        sessao = Sessao[posicao_encontrado_data]
+    else:
+        sessao = Sessao[posicao_encontrado]
         Imprimir_Sessao(sessao)
