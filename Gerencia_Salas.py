@@ -54,7 +54,7 @@ def Le_Arquivo_Sala(Nome_Arquivo):
     Salas = []
     arq = open(Nome_Arquivo, 'r')
     for linha in arq:
-        texto = linha.split(';')
+        texto = linha.strip().split(';')
         s = Sala()
         s.Codigo = texto[0]
         s.Nome = texto[1]
