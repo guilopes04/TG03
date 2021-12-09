@@ -11,7 +11,8 @@ class Sala:
 
 def Alterar_Sala(Salas):
     os.system("cls")
-    codigo = input("Escreva o código da sala: ")
+    os.system("clear")
+    codigo = input("Escreva o código da sala a alterar: ")
     posicao = Buscar(Salas, codigo)
     if posicao == -1:
         print(f"Sala {codigo} não encontrada.")
@@ -20,12 +21,19 @@ def Alterar_Sala(Salas):
         s.Nome = input("Informe o novo nome: ")
         s.Capacidade = int(input("Informe a nova capacidade: "))
         s.Tipo_Exibicao = input("Informe o novo tipo de exibição: ")
-        s.Acessibilidade = input("Informe 'Sim' ou 'Não' para acessibilidade: ")
+        acessibilidade = input("Informe 'Sim' ou 'Não' para acessibilidade: ")
+        if acessibilidade == "Sim" or acessibilidade == "sim":
+            acessibilidade = bool(True)
+        else:
+            acessibilidade = bool(False)
+        s.Acessibilidade = acessibilidade
         os.system("cls")
+        os.system("clear")
         print(f"Sala código {s.Codigo} alterada com sucesso!")
 
 def Remover_Sala(Salas):
     os.system("cls")
+    os.system("clear")
     codigo = input("Escreva o código da sala: ")
     Posicao_Remover = Buscar(Salas, codigo)
     if Posicao_Remover == -1:
@@ -33,6 +41,7 @@ def Remover_Sala(Salas):
     else:
         Remover(Salas, Posicao_Remover)
         os.system("cls")
+        os.system("clear")
         print(f"Sala código {codigo} removida com sucesso!")
 
 def Escreve_Arquivo_Sala(Salas, Nome_Arquivo):
@@ -60,6 +69,8 @@ def Imprimir_Sala(Sala):
     print(f"Código: {Sala.Codigo} | Nome: {Sala.Nome} | Capacidade: {Sala.Capacidade} pessoas | Tipo de Exibição: {Sala.Tipo_Exibicao} | Acessibilidade: {Sala.Acessibilidade}")
 
 def Inserir_Sala(Salas):
+    os.system("cls")
+    os.system("clear")
     Codigo = input("Informe o código da sala: ")
     if Buscar(Salas, Codigo) == -1:
         Nome = input("Informe o nome da sala: ")
@@ -73,11 +84,15 @@ def Inserir_Sala(Salas):
         sala.Tipo_Exibicao = Tipo_Exibicao
         sala.Acessibilidade = Acessibilidade
         Salas.append(sala)
+        os.system("cls")
+        os.system("clear")
         print(f"Sala {sala.Nome} inserida com sucesso.")
     else:
         print(f"Sala código {Codigo} ja cadastrada.")
 
 def Listar_Sala(Sala):
+    os.system("cls")
+    os.system("clear")
     if len(Sala) == 0:
         print("Não há salas cadastradas.")
     else:
@@ -85,6 +100,8 @@ def Listar_Sala(Sala):
             Imprimir_Sala(sala)
 
 def Pesquisar_Sala(Sala):
+    os.system("cls")
+    os.system("clear")
     Codigo = input("Informe o código da sala: ")
     posicao_encontrado = Buscar(Sala, Codigo)
     if posicao_encontrado == -1:
