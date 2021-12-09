@@ -11,7 +11,8 @@ class Filme:
 
 def Alterar_Filme(Filmes):
     os.system("cls")
-    codigo = input("Escreva o código do Filme: ")
+    os.system("clear")
+    codigo = input("Escreva o código do Filme a alterar: ")
     posicao = Buscar(Filmes, codigo)
     if posicao == -1:
         print(f"Filme {codigo} não encontrado.")
@@ -22,17 +23,20 @@ def Alterar_Filme(Filmes):
         f.Genero = input("Informe o novo gênero: ")
         f.Atores = input("Informe os novos atores: ")
         os.system("cls")
+        os.system("clear")
         print(f"Filme {f.Nome} alterado com sucesso!")
 
 def Remover_Filme(Filmes):
     os.system("cls")
-    codigo = input("Escreva o código do Filmes: ")
+    os.system("clear")
+    codigo = input("Escreva o código do Filme a remover: ")
     Posicao_Remover = Buscar(Filmes, codigo)
     if Posicao_Remover == -1:
         print(f"Filme {codigo} não encontrado.")
     else:
         Remover(Filmes, Posicao_Remover)
         os.system("cls")
+        os.system("clear")
         print(f"Filme código {codigo} removido com sucesso!")
 
 def Escreve_Arquivo_Filme(Filmes, Nome_Arquivo):
@@ -60,6 +64,8 @@ def Imprimir_Filme(Filme):
     print(f"Código: {Filme.Codigo} | Nome: {Filme.Nome} | Ano de Lançamento: {Filme.Ano_Lancamento} | Genêro: {Filme.Genero} | Atores: {Filme.Atores}")
 
 def Inserir_Filme(Filmes):
+    os.system("cls")
+    os.system("clear")
     Codigo = input("Informe o código do filme: ")
     if Buscar(Filmes, Codigo) == -1:
         Nome = input("Informe o nome do filme: ")
@@ -73,12 +79,16 @@ def Inserir_Filme(Filmes):
         filme.Genero = Genero
         filme.Atores = Atores
         Filmes.append(filme)
+        os.system("cls")
+        os.system("clear")
         print(f"Filme {filme.Nome} inserido com sucesso.")
     else:
         print(f"Filme código {Codigo} já cadastrado.")
 
 
 def Listar_Filme(Filme):
+    os.system("cls")
+    os.system("clear")
     if len(Filme) == 0:
         print("Não há filmes cadastrados.")
     else:
@@ -86,6 +96,8 @@ def Listar_Filme(Filme):
             Imprimir_Filme(filme)
 
 def Pesquisar_Filme(Filme):
+    os.system("cls")
+    os.system("clear")
     Codigo = input("Informe o código do filme: ")
     posicao_encontrado = Buscar(Filme, Codigo)
     if posicao_encontrado == -1:
