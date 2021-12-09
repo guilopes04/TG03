@@ -71,7 +71,7 @@ def Le_Arquivo_Sessao(Nome_Arquivo):
     Sessoes = []
     arq = open(Nome_Arquivo, 'r')
     for linha in arq:
-        texto = linha.split(';')
+        texto = linha.strip().split(';')
         s = Sessao()
         s.Codigo_Filme = texto[0]
         s.Codigo_Sala = texto[1]
